@@ -75,8 +75,6 @@ module ViddlRb
     # recursively get the final location (after following all redirects)
     # for an url.
     def self.get_final_location(url)
-      res = RestClient::Request.execute(method: :get, url: url, verify_ssl: false)
-      location = res["location"]
       return url
     end
 
