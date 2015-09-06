@@ -37,14 +37,8 @@ module ViddlRb
     plugin = PluginBase.registered_plugins.find { |p| p.matches_provider?(url) }
 
     if plugin 
-      begin
         #we'll end up with an array of hashes with they keys :url and :name
         urls_filenames = plugin.get_urls_and_filenames(url)
-      rescue PluginBase::CouldNotDownloadVideoError => e
-        raise_download_error(e)
-      rescue StandardError => e
-        raise_plugin_error(e, plugin)
-      end
       follow_all_redirects(urls_filenames)
     else
       nil
