@@ -82,6 +82,7 @@ module ViddlRb
       res = http.start() {|http|
         http.get(url.path)
       }
+      puts res
       location = res["location"]
       return url if location.nil?
       return get_final_location(location)
