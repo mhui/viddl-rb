@@ -77,6 +77,7 @@ module ViddlRb
     def self.get_final_location(url)
       url = URI.parse(url)
       http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = (url.scheme == "https")
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       res = http.start() {|http|
         http.get(url.path)
