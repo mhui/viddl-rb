@@ -77,8 +77,7 @@ module ViddlRb
     def self.get_final_location(url)
       res = RestClient::Request.execute(method: :get, url: url, verify_ssl: false)
       location = res["location"]
-      return url if location.nil?
-      return get_final_location(location)
+      return url
     end
 
   end
