@@ -39,15 +39,7 @@ class Youtube < PluginBase
 
   def self.get_videos(urls)
     videos = urls.map do |url|
-      begin
-        @video_resolver.get_video(url)
-      rescue VideoResolver::VideoRemovedError
-        notify "The video #{url} has been removed."
-        nil
-      rescue => e
-        notify "Error getting the video: #{e.message}"
-        nil
-      end
+      @video_resolver.get_video(url)
     end
     videos.reject(&:nil?)
   end
