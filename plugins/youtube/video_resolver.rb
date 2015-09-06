@@ -22,7 +22,7 @@ class VideoResolver
   private
 
   def load_json(url)
-    html = RestClient.get(url)
+    html = RestClient::Request.execute(method: :get, url: url, verify_ssl: false)
     json_data = html[/ytplayer\.config\s*=\s*(\{.+?\});/m, 1] 
     MultiJson.load(json_data)
   end
